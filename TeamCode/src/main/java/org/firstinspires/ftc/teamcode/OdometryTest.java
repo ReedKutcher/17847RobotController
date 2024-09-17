@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @Autonomous
 
-public class AutoBase extends LinearOpMode {
+public class OdometryTest extends LinearOpMode {
     //define motors
     private DcMotor fl;
     private DcMotor fr;
@@ -31,7 +31,7 @@ public class AutoBase extends LinearOpMode {
     double odoLRDist = 50;
     double odoFDist = 25;
 
-    //ticksToDist = (2 * pi * wheelRadius) / pulsesPerRevolution
+    //cmPerTick = (2 * pi * wheelRadius) / pulsesPerRevolution
     double cmPerTick = (2 * Math.PI * 1.6) / 2000;
 
     @Override
@@ -66,6 +66,7 @@ public class AutoBase extends LinearOpMode {
             telemetry.addData("X Position: ", posXField);
             telemetry.addData("Y Position: ", posYField);
             telemetry.addData("Theta: ", rotationField);
+            telemetry.update();
             updatePosition();
         }
     }
