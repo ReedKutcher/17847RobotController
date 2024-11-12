@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp
 
@@ -23,6 +24,16 @@ public class BasicDrive extends LinearOpMode {
         bl = hardwareMap.get(DcMotor.class, "bl");
         br = hardwareMap.get(DcMotor.class, "br");
 
+        fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        fl.setDirection(DcMotorSimple.Direction.FORWARD);
+        fr.setDirection(DcMotorSimple.Direction.REVERSE);
+        bl.setDirection(DcMotorSimple.Direction.FORWARD);
+        br.setDirection(DcMotorSimple.Direction.REVERSE);
+
         waitForStart();
 
         while (opModeIsActive()){
@@ -30,10 +41,10 @@ public class BasicDrive extends LinearOpMode {
             pwrY = gamepad1.left_stick_y;
             turn = gamepad1.right_stick_x;
 
-            fl.setPower(-pwrX + pwrY - turn);
-            fr.setPower(-pwrX - pwrY - turn);
-            bl.setPower(pwrX + pwrY - turn);
-            br.setPower(pwrX - pwrY - turn);
+            fl.setPower(pwrY-pwrX-turn);
+            fr.setPower(pwrY+pwrX+turn);
+            bl.setPower(pwrY+pwrX-turn);
+            br.setPower(pwrY-pwrX+turn);
         }
     }
 }
