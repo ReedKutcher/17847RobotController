@@ -6,7 +6,7 @@ import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-public class MeepMeepTesting {
+public class MeepMeepTestingRight {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
@@ -28,10 +28,11 @@ public class MeepMeepTesting {
                         //drop sample
                         //stop intake servo
                         //retract intake?
+                        .setReversed(true)
                         .splineToLinearHeading(new Pose2d(40, -24, Math.toRadians(0)), Math.toRadians(0))
                         //extend intake arm^
                         //start intake servo
-                        .lineToX(48)
+                        .lineToX(46)
                         //pick up second sample
                         //stop intake servo
                         .strafeToLinearHeading(new Vector2d(48, -48), Math.toRadians(270))
@@ -39,10 +40,21 @@ public class MeepMeepTesting {
                         //drop sample
                         //stop intake servo
                         //retract intake?
+                        .setReversed(true)
                         .splineToLinearHeading(new Pose2d(48, -24, Math.toRadians(0)), Math.toRadians(0))
+                        //extend intake arm^
+                        //start intake servo
                         .lineToX(56)
                         //pick up third sample
-                        .strafeToLinearHeading(new Vector2d(56, -48), Math.toRadians(270))
+                        //stop intake servo
+                        .setReversed(true)
+                        .splineToLinearHeading(new Pose2d(56, -48, Math.toRadians(270)), Math.toRadians(270))
+                        //start intake servo in reverse
+                        //drop sample
+                        //stop intake servo
+                        //retract intake
+                        .lineToY(-56)
+                        //park
                         .build());
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_OFFICIAL)
                 .setDarkMode(true)
